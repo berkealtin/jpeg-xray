@@ -52,6 +52,48 @@ Uygulama standart C kütüphaneleri kullandığı için işletim sistemi bağım
 
 ---
 
+## Örnek Çıktı
+[Segments Map]
+FFD8: SOI (Start of Image)
+FFE1: APP1 (EXIF/XMP)
+FFE1: APP1 (EXIF/XMP)
+FFDB: DQT (Quantization Table)
+FFC0: SOF0 (Start of Frame)
+FFC4: DHT (Huffman Table)
+FFDA: SOS (Start of Scan)
+
+File: test.jpg
+
+[Basic JPEG Info]
+Width              : 650
+Height             : 488
+JFIF X Density     : Not available
+JFIF Y Density     : Not available
+Density Unit       : Not available
+
+[EXIF]
+Camera Make        : samsung
+Camera Model       : SM-G930P
+Date Taken         : 2017:05:29 11:11:16
+Modify Date        : 2017:07:17 12:17:25
+Software           : Adobe Photoshop Lightroom 6.10.1 (Macintosh)
+ISO                : 40
+Exposure Time      : 1/1600
+F Number           : 1.7
+
+[XMP]
+Creator Tool       : Not available
+Metadata Date      : Not available
+Label              : Not available
+
+[Comment]
+Text               : Not available
+
+[ICC]
+ICC Profile        : Not available
+
+---
+
 ## Geliştirici Bilgileri
 
 - **Geliştirici:** Berke Altın
