@@ -53,6 +53,7 @@ Uygulama standart C kütüphaneleri kullandığı için işletim sistemi bağım
 ---
 
 ## Örnek Çıktı
+```text
 [Segments Map]
 FFD8: SOI (Start of Image)
 FFE1: APP1 (EXIF/XMP)
@@ -91,7 +92,7 @@ Text               : Not available
 
 [ICC]
 ICC Profile        : Not available
-
+```
 ---
 
 ## Geliştirici Bilgileri
