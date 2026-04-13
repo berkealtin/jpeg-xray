@@ -1,58 +1,58 @@
 # jpeg-xray
 
-Bu proje, JPEG dosyalarını byte (ikili veri) düzeyinde analiz ederek içerdikleri metadata bilgilerini ayrıştıran, düşük seviyeli (low-level) bir C programıdır.
+This project is a low-level C program that analyzes JPEG files at the byte (binary data) level and extracts their embedded metadata.
 
 ---
 
-## Proje Amacı
+## Project Purpose
 
-Bu uygulamanın temel amacı, bir dosya biçimini yalnızca bir uzantı olarak değil, diskte belirli kurallara göre temsil edilen bir "ikili veri yapısı" olarak görmektir. Hazır harici kütüphaneler (libjpeg, exiv2 vb.) **kullanılmadan**, yalnızca standart C kütüphanesi fonksiyonları ile geliştirilmiştir. Proje kapsamında hedeflenen kazanımlar şunlardır:
+The main goal of this application is to treat a file format not merely as an extension, but as a "binary data structure" represented on disk according to specific rules. It is developed **without using external libraries** (such as libjpeg, exiv2, etc.), relying solely on standard C library functions. The key learning outcomes targeted in this project include:
 
-- Binary dosya okuma ve yönetme (`fopen`, `fseek`, `fgetc`).
-- JPEG marker ve segment yapısını (APPn, DQT, DHT, SOF vb.) anlama.
-- EXIF, XMP, ICC ve yorum (COM) alanlarını byte düzeyinde ayrıştırma.
-- Endianness (Little/Big Endian), offset, length ve dinamik bellek yönetimi (`malloc/free`) kavramlarını uygulamalı olarak gerçekleştirme.
+- Reading and managing binary files (`fopen`, `fseek`, `fgetc`)
+- Understanding JPEG marker and segment structures (APPn, DQT, DHT, SOF, etc.)
+- Parsing EXIF, XMP, ICC, and comment (COM) fields at the byte level
+- Practically applying concepts such as endianness (Little/Big Endian), offsets, lengths, and dynamic memory management (`malloc/free`)
 
 ---
 
-## Özellikler
+## Features
 
-Program, taranan JPEG dosyası içerisinden aşağıdaki bilgileri tespit edip okuyabilir:
+The program can detect and extract the following information from a scanned JPEG file:
 
-### Segment Haritası
-- Dosya başlığından (`0xFFD8` SOI) görüntü verisine (`0xFFDA` SOS) kadar olan JPEG içindeki marker yapılarını tespit eder.
+### Segment Map
+- Identifies JPEG marker structures from the file header (`0xFFD8` SOI) to the image data (`0xFFDA` SOS)
 
 ### Basic JPEG Info (APP0 - JFIF)
-- Genişlik (Width) ve Yükseklik (Height)
-- JFIF yoğunluk bilgileri (X/Y Density)
-- Yoğunluk birimi (Density Unit)
+- Width and Height
+- JFIF density values (X/Y Density)
+- Density unit
 
 ### EXIF Metadata (APP1)
-- Kamera üreticisi (Make) ve Kamera modeli (Model)
-- Çekim tarihi (Date Taken) ve Değiştirme tarihi (Modify Date)
-- Yazılım bilgisi (Software)
-- Pozlama ayarları: ISO değeri, Pozlama süresi (Exposure Time), Diyafram değeri (F Number)
+- Camera make and model
+- Date taken and modification date
+- Software information
+- Exposure settings: ISO value, exposure time, and aperture (F Number)
 
 ### XMP Metadata (APP1)
-- Creator Tool, Metadata Date, Label gibi Adobe tabanlı XML metadata içeriklerini metinsel olarak ayrıştırır.
+- Extracts Adobe-based XML metadata fields such as Creator Tool, Metadata Date, and Label as text
 
-### Yorum / Comment (COM)
-- JPEG içine gömülmüş düz metin açıklamalarını (`0xFFFE`) bulur ve ekrana basar.
+### Comment (COM)
+- Finds and displays plain text comments (`0xFFFE`) embedded in the JPEG
 
 ### ICC Profile (APP2)
-- Dosyada bir renk yönetim profili (ICC) bulunup bulunmadığını kontrol eder.
+- Checks whether a color management profile (ICC) exists in the file
 
 ---
 
-## Derleme ve Kullanım
+## Build and Usage
 
-Uygulama standart C kütüphaneleri kullandığı için işletim sistemi bağımsız olarak çalıştırılabilir. Terminal veya komut satırını açıp dosyanın bulunduğu dizinde aşağıdaki komutu çalıştırarak derleyebilirsiniz:
+Since the application uses only standard C libraries, it can run independently of the operating system. Open your terminal or command line in the directory where the file is located and compile it using the following command:
 
     gcc jpeg-xray.c -o jpeg-xray
 
 ---
 
-## Örnek Çıktı
+## Sample Output
 ```text
 [Segments Map]
 FFD8: SOI (Start of Image)
@@ -95,6 +95,6 @@ ICC Profile        : Not available
 ```
 ---
 
-## Geliştirici Bilgileri
+## Developer Information
 
-- **Geliştirici:** Berke Altın
+- **Developer**: Berke Altın
